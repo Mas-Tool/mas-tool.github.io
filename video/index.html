@@ -11,16 +11,23 @@
 
 </head>
 <body>
-<video id="my_video_1" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" muted="muted"
+<video id="player" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" muted="muted"
        data-setup='{}'>
-  <source src="{{url}}" type="application/x-mpegURL">
 </video>
 
 <script>
-  setTimeout(()=>{
-    var player = videojs('my_video_1');
-    player.play();
-  },2000);
+  var video = document.getElementById('player');
+  var source = document.createElement('source');
+  const params = new URLSearchParams(window.location.search)
+
+  video.appendChild(source);
+
+  source.setAttribute('src',params.get('url') );
+  source.setAttribute('type', 'application/x-mpegURL');
+
+  var player = videojs('player');
+  player.play();
+
 
 </script>
 
